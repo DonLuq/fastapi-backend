@@ -1,0 +1,15 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+      {
+        "name": "FastAPI: Uvicorn (reload)",
+        "type": "python",
+        "request": "launch",
+        "program": ".venv/bin/uvicorn",
+        "args": ["src.main:app", "--reload"],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "env": { "PYTHONPATH": "${workspaceFolder}" }
+      }
+    ]
+}

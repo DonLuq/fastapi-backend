@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from src.api.routers import router as api_router
 
 app = FastAPI()
@@ -14,6 +15,12 @@ app.add_middleware(
 
 app.include_router(api_router)
 
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the FastAPI application!"}
+
+
+@app.get("/pic")
+def read_pic():
+    return {"message": "return picture here"}

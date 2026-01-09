@@ -2,11 +2,11 @@
 name = "fastapi-backend"
 version = "0.1.0"
 description = "A FastAPI backend application"
-authors = ["Your Name <youremail@example.com>"]
+authors = ["donluq <luqas828@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 fastapi = "^0.75.0"
 uvicorn = "^0.17.0"
 sqlalchemy = "^1.4.27"
@@ -15,3 +15,20 @@ pydantic = "^1.8.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+lint.extend-select = ["I"]  # import sorting
+# ignore = ["E501"]    # uncomment if you want to ignore long lines
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+packages = ["src"]
+explicit_package_bases = true
+ignore_missing_imports = true

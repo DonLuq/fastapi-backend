@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run FastAPI (uvicorn)",
+        "type": "shell",
+        "command": ".venv/bin/uvicorn src.main:app --reload",
+        "options": { "cwd": "${workspaceFolder}" },
+        "group": { "kind": "build", "isDefault": true }
+      },
+      {
+        "label": "Ruff: Lint",
+        "type": "shell",
+        "command": ".venv/bin/ruff check src",
+        "options": { "cwd": "${workspaceFolder}" }
+      },
+      {
+        "label": "Ruff: Fix",
+        "type": "shell",
+        "command": ".venv/bin/ruff check src --fix",
+        "options": { "cwd": "${workspaceFolder}" }
+      },
+      {
+        "label": "Format: Black",
+        "type": "shell",
+        "command": ".venv/bin/black src",
+        "options": { "cwd": "${workspaceFolder}" }
+      },
+      {
+        "label": "Type check: mypy",
+        "type": "shell",
+        "command": ".venv/bin/mypy src",
+        "options": { "cwd": "${workspaceFolder}" }
+      }
+    ]
+}
