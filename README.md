@@ -22,9 +22,11 @@ fastapi-backend
 │   │   ├── user.py            # User-related schemas
 │   │   └── __init__.py
 │   └── utils                  # Utility functions
-│       └── __init__.py
+       ├── storage.py│
+       └── __init__.py
 ├── pyproject.toml             # Project metadata and dependencies
-├── requirements.txt           # Required Python packages
+├── requirements.txt           # Required production Python packages
+├── requirements-dev.txt           # Required development Python packages
 └── README.md                  # Project documentation
 ```
 
@@ -36,15 +38,23 @@ fastapi-backend
    cd fastapi-backend
    ```
 
-2. Create a virtual environment:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+2. Install uv (if not already installed):
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
-3. Install the required packages:
+3. Install all dependencies:
+   ```bash
+   # uv automatically creates .venv and installs all dependencies
+   uv sync
+   
+   # For production only (no dev dependencies)
+   uv sync --no-dev
    ```
-   pip install -r requirements.txt
+
+4. Set up pre-commit hooks (for development):
+   ```bash
+   uv run pre-commit install
    ```
 
 ## Usage

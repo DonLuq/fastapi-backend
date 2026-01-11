@@ -1,33 +1,41 @@
-[tool.poetry]
+[project]
 name = "fastapi-backend"
 version = "0.1.0"
-description = "A FastAPI backend application"
-authors = ["donluq <luqas828@gmail.com>"]
-license = "MIT"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "fastapi>=0.128.0",
+    "fastapi-users>=15.0.3",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "sqlalchemy>=2.0.45",
+    "uvicorn[standard]>=0.40.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-fastapi = "^0.75.0"
-uvicorn = "^0.17.0"
-sqlalchemy = "^1.4.27"
-pydantic = "^1.8.2"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "black>=25.12.0",
+    "httpx>=0.28.1",
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.14.11",
+]
 
 [tool.black]
 line-length = 88
-target-version = ["py310"]
+target-version = ["py312"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py312"
 lint.extend-select = ["I"]  # import sorting
-# ignore = ["E501"]    # uncomment if you want to ignore long lines
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.12"
 strict = false
 packages = ["src"]
 explicit_package_bases = true
