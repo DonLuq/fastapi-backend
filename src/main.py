@@ -3,13 +3,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 
 from src.api.routers import router as api_router
+from src.core.config import settings
 from src.utils.storage import save_file_local
 
-app = FastAPI()
+app = FastAPI(
+    title=settings.app_name,
+    debug=settings.debug_mode,
+)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

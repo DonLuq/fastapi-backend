@@ -1,13 +1,44 @@
-from pydantic import BaseSettings
+from typing import List, Optional
+
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_name: str = "FastAPI Backend"
-    admin_email: str = "admin@example.com"
-    items_per_page: int = 10
+    # API Configuration
+    app_name: str = "FastAPI Application Default Name"
+    api_key: Optional[str] = None
 
-    class Config:
-        env_file = ".env"
+    # Finnhub API
+    finnhub_email: Optional[str] = Field(default=None, alias="FINNHUB_EMAIL")
+    finnhub_api_key: Optional[str] = Field(default=None, alias="FINNHUB_API_KEY")
+
+    # Database
+    storage_database_url: Optional[str] = Field(
+        default=None, alias="STORAGE_DATABASE_URL"
+    )
+    storage_database_user: Optional[str] = Field(
+        default=None, alias="STORAGE_DATABASE_USER"
+    )
+    storage_database_password: Optional[str] = Field(
+        default=None, alias="STORAGE_DATABASE_PASSWORD"
+    )
+
+    # Logging
+    log_level: str = Field(default="INFO", alias="LOG_LEVEL")
+    debug_mode: bool = Field(default=False, alias="DEBUG_MODE")
+
+    # Storage
+    storage_backend: str = "local"
+    upload_dir: str = "./uploads"
+
+    # CORS
+    cors_origins: List[str] = ["*"]
+
+    # Configuration for loading from environment variables
+    model_config = SettingsConfigDict(
+        env_file=".env", case_sensitive=True, env_prefix=""
+    )
 
 
 settings = Settings()
