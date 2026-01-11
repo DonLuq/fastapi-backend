@@ -30,7 +30,7 @@ class Settings(BaseSettings):
 
     # Storage
     storage_backend: str = "local"
-    upload_dir: str = "./uploads"
+    upload_dir: str = "/tmp/uploads"
 
     # CORS
     cors_origins: List[str] = ["*"]

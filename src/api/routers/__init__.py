@@ -1,9 +1,15 @@
 from fastapi import APIRouter
+from fastapi.responses import RedirectResponse
 
-router = APIRouter()
+from . import files, health, stocks
+
+aggregate_router = APIRouter(prefix="/api/v1")
+
+aggregate_router.include_router(health.router)
+aggregate_router.include_router(files.router)
+aggregate_router.include_router(stocks.router)
 
 
-# Here you can include your route handlers, for example:
-# from . import users, items
-# router.include_router(users.router)
-# router.include_router(items.router)
+@aggregate_router.get("/", include_in_schema=False)
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")
