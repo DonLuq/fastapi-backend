@@ -1,7 +1,13 @@
+import finnhub
+
+from src.core.config import settings
+
+finnhub_client = finnhub.Client(api_key=settings.finnhub_api_key)
+
+
 class StockService:
-    # placeholder for file service methods
     @staticmethod
     def get_stock_data(symbol: str):
-        return {"symbol": symbol, "price": 100.0}  # Placeholder implementation
+        return finnhub_client.stock_candles(symbol, "D", 1590988249, 1591852249)
 
     pass

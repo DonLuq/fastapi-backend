@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     api_key: Optional[str] = None
 
     # Finnhub API
+    finnhub_url: Optional[str] = Field(default=None, alias="FINNHUB_URL")
     finnhub_email: Optional[str] = Field(default=None, alias="FINNHUB_EMAIL")
     finnhub_api_key: Optional[str] = Field(default=None, alias="FINNHUB_API_KEY")
 
